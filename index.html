@@ -1,28 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Falguni Upload Portal</title>
-    <style>
-        body { font-family: Arial; padding: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background-color: #4CAF50; color: white; }
-        button { padding: 10px 20px; cursor: pointer; }
-    </style>
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-<h1>Falguni Upload Portal</h1>
+    <div class="container">
 
-<input type="file" id="fileInput" multiple>
-<br><br>
-<button id="uploadBtn">Upload Files</button> <!-- onclick હટાવી દીધું -->
+        <h1>📁 Falguni Upload Portal</h1>
 
-<div id="result"></div>
+        <p class="subtitle">
+            Secure File Upload for Falguni Xerox & Computer Work
+        </p>
 
-<script src="script.js"></script>
+        <input
+            type="file"
+            id="fileInput"
+            multiple>
+
+        <button id="uploadBtn">
+            ⬆ Upload Files
+        </button>
+        <div id="selectedFiles" class="file-preview" style="display:none;">
+
+    <h3>📂 Selected Files</h3>
+
+    <ul id="fileList"></ul>
+
+</div>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
