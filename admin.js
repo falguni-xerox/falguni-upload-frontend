@@ -1,300 +1,546 @@
 const API = "https://api.falgunixerox.in/upload";
 
+
+// -------------------------------------
+// Load Orders
+// -------------------------------------
+
 async function loadFiles() {
 
     try {
 
         const response = await fetch(`${API}/files`);
 
+
         if (!response.ok) {
-            throw new Error("Failed to fetch files");
+
+            throw new Error("Failed to fetch orders");
+
         }
+
 
         const data = await response.json();
 
+
         const table = document.getElementById("fileTable");
+
         table.innerHTML = "";
 
-        if (!data.success || !Array.isArray(data.files) || data.files.length === 0) {
+
+
+        if (
+            !data.success ||
+            !Array.isArray(data.orders) ||
+            data.orders.length === 0
+        ) {
+
 
             table.innerHTML = `
+
                 <tr>
-                    <td colspan="6">No Files Found</td>
+
+                    <td colspan="6">
+                        No Orders Found
+                    </td>
+
                 </tr>
+
             `;
 
+
             return;
+
         }
 
-        data.files.forEach((file, index) => {
 
-            const ext = file.displayName.includes(".")
-                ? file.displayName.split(".").pop().toLowerCase()
-                : "";
 
-            let icon = "📄";
+        data.orders.forEach((order, index) => {
 
-            switch (ext) {
 
-                case "jpg":
-                case "jpeg":
-                case "png":
-                case "gif":
-                case "bmp":
-                case "webp":
+
+            let filesHTML = "";
+
+
+
+            order.files.forEach(file => {
+
+
+
+                const ext =
+                    file.displayName
+                    .split(".")
+                    .pop()
+                    .toLowerCase();
+
+
+
+                let icon = "📄";
+
+
+
+                if (
+                    [
+                        "jpg",
+                        "jpeg",
+                        "png",
+                        "webp"
+                    ].includes(ext)
+                ) {
+
                     icon = "🖼️";
-                    break;
 
-                case "pdf":
+                }
+
+                else if (ext === "pdf") {
+
                     icon = "📕";
-                    break;
 
-                case "doc":
-                case "docx":
+                }
+
+                else if (
+                    [
+                        "doc",
+                        "docx"
+                    ].includes(ext)
+                ) {
+
                     icon = "📘";
-                    break;
 
-                case "xls":
-                case "xlsx":
+                }
+
+                else if (
+                    [
+                        "xls",
+                        "xlsx"
+                    ].includes(ext)
+                ) {
+
                     icon = "📗";
-                    break;
 
-                case "ppt":
-                case "pptx":
-                    icon = "📙";
-                    break;
+                }
 
-                case "zip":
-                case "rar":
-                case "7z":
-                    icon = "🗜️";
-                    break;
 
-                default:
-                    icon = "📄";
 
-            }
+                filesHTML += `
 
-            table.insertAdjacentHTML("beforeend", `
+                    <div style="margin:5px 0">
+
+                        ${icon}
+
+                        ${file.displayName}
+
+                        <button
+
+                            class="download-btn"
+
+                            onclick="
+                            downloadFile(
+                            '${order.jobId}',
+                            '${file.storedName}'
+                            )">
+
+                            ⬇
+
+                        </button>
+
+
+                    </div>
+
+                `;
+
+
+
+            });
+
+
+
+            table.insertAdjacentHTML(
+                "beforeend",
+
+                `
 
                 <tr>
 
+
                     <td>
-                        <input
-                            type="checkbox"
-                            class="fileCheck"
-                            value="${file.storedName}">
+                        ${index + 1}
                     </td>
 
-                    <td>${index + 1}</td>
 
-                    <td>${icon} ${file.displayName}</td>
-
-                    <td>${file.sizeKB.toFixed(2)} KB</td>
-
-                    <td>${ext.toUpperCase()}</td>
 
                     <td>
 
-                        <div class="action-buttons">
-
-                            <button
-                                type="button"
-                                class="download-btn"
-                                onclick="downloadFile('${file.storedName}')">
-
-                                ⬇ Download
-
-                            </button>
-
-                        </div>
+                        <b>
+                        ${order.jobId}
+                        </b>
 
                     </td>
+
+
+
+                    <td>
+
+                        ${filesHTML}
+
+                    </td>
+
+
+
+                    <td>
+
+                        ${order.files.length}
+                        Files
+
+                    </td>
+
+
+
+                    <td>
+
+                        ${new Date(
+                            order.uploadedAt
+                        ).toLocaleString()}
+
+
+                    </td>
+
+
+
+                    <td>
+
+
+                        <button
+
+                        class="download-btn"
+
+                        onclick="
+                        downloadOrderZip(
+                        '${order.jobId}'
+                        )">
+
+                        📦 ZIP
+
+
+                        </button>
+
+
+                        <button
+
+                        class="delete-btn"
+
+                        onclick="
+                        deleteOrder(
+                        '${order.jobId}'
+                        )">
+
+                        🗑 Delete
+
+
+                        </button>
+
+
+                    </td>
+
 
                 </tr>
 
-            `);
+                `
+
+            );
+
+
 
         });
 
+
+
     }
 
-    catch (err) {
 
-        console.error("Load Files Error:", err);
+    catch(err) {
 
-        document.getElementById("fileTable").innerHTML = `
+
+        console.error(
+            "Load Orders Error:",
+            err
+        );
+
+
+        document.getElementById("fileTable")
+        .innerHTML = `
+
             <tr>
+
                 <td colspan="6">
-                    Failed to load files.
+
+                    Failed to load orders.
+
                 </td>
+
             </tr>
+
         `;
 
+
     }
 
+
 }
+
+
+
 
 // -------------------------------------
 // Single File Download
 // -------------------------------------
 
-function downloadFile(fileName) {
+function downloadFile(jobId, fileName) {
+
 
     window.open(
-        `${API}/download/${encodeURIComponent(fileName)}`,
+
+        `${API}/download/${encodeURIComponent(jobId)}/${encodeURIComponent(fileName)}`,
+
         "_blank"
+
     );
 
-}
-
-// -------------------------------------
-// Get Selected Files
-// -------------------------------------
-
-function getSelectedFiles() {
-
-    return Array.from(
-
-        document.querySelectorAll(".fileCheck:checked")
-
-    ).map(cb => cb.value);
 
 }
 
-// -------------------------------------
-// Download Selected ZIP
-// -------------------------------------
 
-async function downloadSelected() {
 
-    const files = getSelectedFiles();
-
-    if (files.length === 0) {
-
-        alert("Please select at least one file.");
-
-        return;
-
-    }
-
-    try {
-
-        const response = await fetch(`${API}/download-zip`, {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                files
-            })
-
-        });
-
-        if (!response.ok) {
-
-            throw new Error("ZIP download failed.");
-
-        }
-
-        const blob = await response.blob();
-
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement("a");
-
-        a.href = url;
-
-        a.download = `Falguni_Files_${Date.now()}.zip`;
-
-        document.body.appendChild(a);
-
-        a.click();
-
-        a.remove();
-
-        URL.revokeObjectURL(url);
-
-    }
-
-    catch (err) {
-
-        console.error(err);
-
-        alert("ZIP Download Failed.");
-
-    }
-
-}
-
-// -------------------------------------
-// Select All
-// -------------------------------------
-
-const selectAll = document.getElementById("selectAll");
-
-if (selectAll) {
-
-    selectAll.addEventListener("change", () => {
-
-        document.querySelectorAll(".fileCheck").forEach(cb => {
-
-            cb.checked = selectAll.checked;
-
-        });
-
-    });
-
-}
-
-// -------------------------------------
-// Keep Select All Updated
-// -------------------------------------
-
-document.addEventListener("change", (e) => {
-
-    if (!e.target.classList.contains("fileCheck")) return;
-
-    const checkboxes = document.querySelectorAll(".fileCheck");
-    const checked = document.querySelectorAll(".fileCheck:checked");
-
-    if (selectAll) {
-
-        selectAll.checked =
-            checkboxes.length > 0 &&
-            checkboxes.length === checked.length;
-
-    }
-
-});
 
 // -------------------------------------
 // Refresh
 // -------------------------------------
 
-document.getElementById("refreshBtn")?.addEventListener("click", () => {
-
-    if (selectAll) {
-        selectAll.checked = false;
-    }
+document
+.getElementById("refreshBtn")
+?.addEventListener(
+"click",
+()=>{
 
     loadFiles();
 
 });
 
-// -------------------------------------
-// Download ZIP
-// -------------------------------------
 
-document
-    .getElementById("downloadSelectedBtn")
-    ?.addEventListener("click", downloadSelected);
 
-// -------------------------------------
+
 // Initial Load
+
+window.addEventListener(
+"DOMContentLoaded",
+loadFiles
+);
+// -------------------------------------
+// Download Complete Order ZIP
 // -------------------------------------
 
-window.addEventListener("DOMContentLoaded", loadFiles);
+async function downloadOrderZip(jobId) {
+
+
+    try {
+
+
+        const response = await fetch(
+
+            `${API}/download-zip`,
+
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type":
+                    "application/json"
+
+                },
+
+                body: JSON.stringify({
+
+                    jobId
+
+                })
+
+            }
+
+        );
+
+
+
+        if (!response.ok) {
+
+
+            const error =
+                await response.json();
+
+
+            alert(
+                error.message ||
+                "ZIP Download Failed."
+            );
+
+
+            return;
+
+
+        }
+
+
+
+        const blob =
+            await response.blob();
+
+
+
+        const url =
+            URL.createObjectURL(blob);
+
+
+
+        const a =
+            document.createElement("a");
+
+
+
+        a.href = url;
+
+
+
+        a.download =
+            `${jobId}.zip`;
+
+
+
+        document.body.appendChild(a);
+
+
+
+        a.click();
+
+
+
+        a.remove();
+
+
+
+        URL.revokeObjectURL(url);
+
+
+
+    }
+
+    catch(err) {
+
+
+        console.error(
+            "ZIP Error:",
+            err
+        );
+
+
+        alert(
+            "ZIP Download Failed."
+        );
+
+
+    }
+
+
+}
+
+
+
+// -------------------------------------
+// Delete Complete Order
+// -------------------------------------
+
+async function deleteOrder(jobId) {
+
+
+    const confirmDelete =
+        confirm(
+            `Delete ${jobId} ?`
+        );
+
+
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+
+
+    try {
+
+
+        const response =
+            await fetch(
+
+                `${API}/order/${encodeURIComponent(jobId)}`,
+
+                {
+
+                    method:"DELETE"
+
+                }
+
+            );
+
+
+
+        const data =
+            await response.json();
+
+
+
+        if(data.success){
+
+
+            alert(
+                "Order deleted successfully."
+            );
+
+
+            loadFiles();
+
+
+        }
+        else{
+
+
+            alert(
+                data.message ||
+                "Delete failed."
+            );
+
+
+        }
+
+
+
+    }
+
+    catch(err){
+
+
+        console.error(
+            "Delete Error:",
+            err
+        );
+
+
+        alert(
+            "Delete failed."
+        );
+
+
+    }
+
+
+}
