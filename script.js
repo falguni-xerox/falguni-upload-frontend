@@ -3,53 +3,6 @@ const uploadBtn = document.getElementById("uploadBtn");
 const result = document.getElementById("result");
 
 // =====================================
-// Selected Files Preview
-// =====================================
-
-const selectedFiles = document.getElementById("selectedFiles");
-const fileList = document.getElementById("fileList");
-
-fileInput.addEventListener("change", () => {
-
-    fileList.innerHTML = "";
-
-    if (fileInput.files.length === 0) {
-
-        selectedFiles.style.display = "none";
-        return;
-
-    }
-
-    selectedFiles.style.display = "block";
-
-    Array.from(fileInput.files).forEach(file => {
-
-        let icon = "📄";
-
-        if (file.type.startsWith("image/")) {
-
-            icon = "🖼️";
-
-        } else if (file.type === "application/pdf") {
-
-            icon = "📕";
-
-        }
-
-        const li = document.createElement("li");
-
-        li.innerHTML = `
-            <span>${icon} ${file.name}</span>
-            <strong>${(file.size / 1024).toFixed(2)} KB</strong>
-        `;
-
-        fileList.appendChild(li);
-
-    });
-
-});
-
-// =====================================
 // Upload Files
 // =====================================
 
@@ -135,8 +88,6 @@ uploadBtn.addEventListener("click", async () => {
         `;
 
         fileInput.value = "";
-        fileList.innerHTML = "";
-        selectedFiles.style.display = "none";
 
     }
 
