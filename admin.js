@@ -296,15 +296,21 @@ async function loadFiles() {
 
 function downloadFile(jobId, fileName) {
 
+    const url =
+        `${API}/download/${encodeURIComponent(jobId)}/${encodeURIComponent(fileName)}`;
 
-    window.open(
 
-        `${API}/download/${encodeURIComponent(jobId)}/${encodeURIComponent(fileName)}`,
+    const a = document.createElement("a");
 
-        "_blank"
+    a.href = url;
 
-    );
+    a.download = "";
 
+    document.body.appendChild(a);
+
+    a.click();
+
+    document.body.removeChild(a);
 
 }
 
