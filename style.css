@@ -1,10 +1,250 @@
+/* ==========================
+   FALGUNI UPLOAD PORTAL V2
+   Professional UI
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-    font-family: Arial;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:#f4f7fb;
+    color:#222;
     padding:40px;
 }
 
+/* Main Container */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    background:#fff;
+    padding:35px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+/* Heading */
+
+h1{
+    color:#0d47a1;
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+h2{
+    color:#444;
+    margin-bottom:25px;
+}
+
+/* Upload Area */
+
+input[type=file]{
+    width:100%;
+    padding:18px;
+    border:2px dashed #2196f3;
+    border-radius:10px;
+    background:#eef7ff;
+    margin:20px 0;
+}
+
+/* Buttons */
+
 button{
-    padding:12px 25px;
-    font-size:18px;
+
+    background:#1565c0;
+    color:#fff;
+    border:none;
+    padding:13px 24px;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:bold;
     cursor:pointer;
+    transition:.25s;
+    margin:5px;
+}
+
+button:hover{
+
+    background:#0d47a1;
+    transform:translateY(-2px);
+}
+
+button:active{
+
+    transform:scale(.98);
+}
+
+/* Table */
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    margin-top:25px;
+    background:white;
+}
+
+table thead{
+
+    background:#1565c0;
+    color:white;
+}
+
+table th{
+
+    padding:15px;
+    text-align:center;
+    font-size:16px;
+}
+
+table td{
+
+    padding:14px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+table tbody tr:nth-child(even){
+
+    background:#f7f9fc;
+}
+
+table tbody tr:hover{
+
+    background:#eef6ff;
+}
+
+/* Action Buttons */
+
+.action-buttons{
+
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:nowrap;
+}
+
+.action-buttons button{
+
+    margin:0;
+    min-width:110px;
+}
+
+/* Success Box */
+
+.success{
+
+    background:#e8f8ea;
+    border:2px solid #4caf50;
+    padding:25px;
+    border-radius:10px;
+    margin-top:25px;
+}
+
+.success h2{
+
+    color:#2e7d32;
+    margin-bottom:12px;
+}
+
+/* File List */
+
+.success ol{
+
+    margin-left:25px;
+    margin-top:15px;
+}
+
+.success li{
+
+    margin:8px 0;
+}
+
+/* Refresh Button */
+
+.refresh-btn{
+
+    background:#ff9800;
+}
+
+.refresh-btn:hover{
+
+    background:#ef6c00;
+}
+
+/* Download Button */
+
+.download-btn{
+
+    background:#2e7d32;
+}
+
+.download-btn:hover{
+
+    background:#1b5e20;
+}
+
+/* Print Button */
+
+.print-btn{
+
+    background:#6a1b9a;
+}
+
+.print-btn:hover{
+
+    background:#4a148c;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+body{
+
+padding:15px;
+
+}
+
+.container{
+
+padding:20px;
+
+}
+
+h1{
+
+font-size:28px;
+
+}
+
+table{
+
+display:block;
+overflow-x:auto;
+
+}
+
+.action-buttons{
+
+flex-direction:column;
+
+}
+
+.action-buttons button{
+
+width:100%;
+
+}
+
+button{
+
+width:100%;
+
+}
+
 }

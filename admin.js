@@ -89,17 +89,29 @@ async function loadFiles() {
 
                     <td>${file.type.replace(".", "").toUpperCase()}</td>
 
-                    <td>
+<td>
 
-                        <button onclick="printFile('${encodeURIComponent(file.storedName)}')">
-                            🖨️ Print
-                        </button>
+    <div class="action-buttons">
 
-                        <button onclick="downloadFile('${encodeURIComponent(file.storedName)}')">
-                            ⬇️ Download
-                        </button>
+        <button
+            class="print-btn"
+            onclick="printFile('${encodeURIComponent(file.storedName)}')">
 
-                    </td>
+            🖨 Print
+
+        </button>
+
+        <button
+            class="download-btn"
+            onclick="downloadFile('${encodeURIComponent(file.storedName)}')">
+
+            ⬇ Download
+
+        </button>
+
+    </div>
+
+</td>
 
                 </tr>
 
