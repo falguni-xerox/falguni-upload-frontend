@@ -94,14 +94,6 @@ async function loadFiles() {
     <div class="action-buttons">
 
         <button
-            class="print-btn"
-            onclick="printFile('${encodeURIComponent(file.storedName)}')">
-
-            🖨 Print
-
-        </button>
-
-        <button
             class="download-btn"
             onclick="downloadFile('${encodeURIComponent(file.storedName)}')">
 
@@ -112,7 +104,6 @@ async function loadFiles() {
     </div>
 
 </td>
-
                 </tr>
 
             `;

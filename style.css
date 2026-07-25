@@ -230,21 +230,11 @@ overflow-x:auto;
 }
 
 .action-buttons{
-
-flex-direction:column;
-
+    display:flex;
+    justify-content:center;
 }
 
 .action-buttons button{
-
-width:100%;
-
+    min-width:140px;
 }
-
-button{
-
-width:100%;
-
-}
-
 }
