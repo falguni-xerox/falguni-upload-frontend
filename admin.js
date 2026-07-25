@@ -5,6 +5,11 @@ async function loadFiles() {
     try {
 
         const response = await fetch(`${API}/files`);
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch files");
+        }
+
         const data = await response.json();
 
         const table = document.getElementById("fileTable");
@@ -23,41 +28,45 @@ async function loadFiles() {
 
         data.files.forEach((file, index) => {
 
+            const ext = file.displayName.includes(".")
+                ? file.displayName.split(".").pop().toLowerCase()
+                : "";
+
             let icon = "📄";
 
-            switch (file.type.toLowerCase()) {
+            switch (ext) {
 
-                case ".jpg":
-                case ".jpeg":
-                case ".png":
-                case ".gif":
-                case ".bmp":
-                case ".webp":
+                case "jpg":
+                case "jpeg":
+                case "png":
+                case "gif":
+                case "bmp":
+                case "webp":
                     icon = "🖼️";
                     break;
 
-                case ".pdf":
+                case "pdf":
                     icon = "📕";
                     break;
 
-                case ".doc":
-                case ".docx":
+                case "doc":
+                case "docx":
                     icon = "📘";
                     break;
 
-                case ".xls":
-                case ".xlsx":
+                case "xls":
+                case "xlsx":
                     icon = "📗";
                     break;
 
-                case ".ppt":
-                case ".pptx":
+                case "ppt":
+                case "pptx":
                     icon = "📙";
                     break;
 
-                case ".zip":
-                case ".rar":
-                case ".7z":
+                case "zip":
+                case "rar":
+                case "7z":
                     icon = "🗜️";
                     break;
 
@@ -81,9 +90,9 @@ async function loadFiles() {
 
                     <td>${icon} ${file.displayName}</td>
 
-                    <td>${(file.size / 1024).toFixed(2)} KB</td>
+                    <td>${file.sizeKB.toFixed(2)} KB</td>
 
-                    <td>${file.type.replace(".", "").toUpperCase()}</td>
+                    <td>${ext.toUpperCase()}</td>
 
                     <td>
 
@@ -112,7 +121,7 @@ async function loadFiles() {
 
     catch (err) {
 
-        console.error(err);
+        console.error("Load Files Error:", err);
 
         document.getElementById("fileTable").innerHTML = `
             <tr>
@@ -132,19 +141,10 @@ async function loadFiles() {
 
 function downloadFile(fileName) {
 
-    const a = document.createElement("a");
-
-    a.href = `${API}/download/${encodeURIComponent(fileName)}`;
-
-    a.setAttribute("download", "");
-
-    a.style.display = "none";
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    document.body.removeChild(a);
+    window.open(
+        `${API}/download/${encodeURIComponent(fileName)}`,
+        "_blank"
+    );
 
 }
 
@@ -180,37 +180,23 @@ async function downloadSelected() {
 
     try {
 
-        const response = await fetch(
+        const response = await fetch(`${API}/download-zip`, {
 
-            `${API}/download-zip`,
+            method: "POST",
 
-            {
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-                method: "POST",
+            body: JSON.stringify({
+                files
+            })
 
-                headers: {
-
-                    "Content-Type": "application/json"
-
-                },
-
-                body: JSON.stringify({
-
-                    files
-
-                })
-
-            }
-
-        );
+        });
 
         if (!response.ok) {
 
-            const err = await response.json();
-
-            alert(err.message || "ZIP Download Failed.");
-
-            return;
+            throw new Error("ZIP download failed.");
 
         }
 
@@ -250,15 +236,19 @@ async function downloadSelected() {
 
 const selectAll = document.getElementById("selectAll");
 
-selectAll.addEventListener("change", () => {
+if (selectAll) {
 
-    document.querySelectorAll(".fileCheck").forEach(cb => {
+    selectAll.addEventListener("change", () => {
 
-        cb.checked = selectAll.checked;
+        document.querySelectorAll(".fileCheck").forEach(cb => {
+
+            cb.checked = selectAll.checked;
+
+        });
 
     });
 
-});
+}
 
 // -------------------------------------
 // Keep Select All Updated
@@ -269,10 +259,15 @@ document.addEventListener("change", (e) => {
     if (!e.target.classList.contains("fileCheck")) return;
 
     const checkboxes = document.querySelectorAll(".fileCheck");
-
     const checked = document.querySelectorAll(".fileCheck:checked");
 
-    selectAll.checked = checkboxes.length > 0 && checkboxes.length === checked.length;
+    if (selectAll) {
+
+        selectAll.checked =
+            checkboxes.length > 0 &&
+            checkboxes.length === checked.length;
+
+    }
 
 });
 
@@ -280,9 +275,11 @@ document.addEventListener("change", (e) => {
 // Refresh
 // -------------------------------------
 
-document.getElementById("refreshBtn").addEventListener("click", () => {
+document.getElementById("refreshBtn")?.addEventListener("click", () => {
 
-    selectAll.checked = false;
+    if (selectAll) {
+        selectAll.checked = false;
+    }
 
     loadFiles();
 
@@ -294,7 +291,7 @@ document.getElementById("refreshBtn").addEventListener("click", () => {
 
 document
     .getElementById("downloadSelectedBtn")
-    .addEventListener("click", downloadSelected);
+    ?.addEventListener("click", downloadSelected);
 
 // -------------------------------------
 // Initial Load
