@@ -25,7 +25,7 @@ async function loadFiles() {
 
             let icon = "📄";
 
-            switch (file.type) {
+            switch (file.type.toLowerCase()) {
 
                 case ".jpg":
                 case ".jpeg":
@@ -61,16 +61,12 @@ async function loadFiles() {
                     icon = "🗜️";
                     break;
 
-                case ".txt":
-                    icon = "📄";
-                    break;
-
                 default:
                     icon = "📄";
 
             }
 
-            table.innerHTML += `
+            table.insertAdjacentHTML("beforeend", `
 
                 <tr>
 
@@ -89,24 +85,26 @@ async function loadFiles() {
 
                     <td>${file.type.replace(".", "").toUpperCase()}</td>
 
-<td>
+                    <td>
 
-    <div class="action-buttons">
+                        <div class="action-buttons">
 
-        <button
-            class="download-btn"
-            onclick="downloadFile('${encodeURIComponent(file.storedName)}')">
+                            <button
+                                type="button"
+                                class="download-btn"
+                                onclick="downloadFile('${file.storedName}')">
 
-            ⬇ Download
+                                ⬇ Download
 
-        </button>
+                            </button>
 
-    </div>
+                        </div>
 
-</td>
+                    </td>
+
                 </tr>
 
-            `;
+            `);
 
         });
 
@@ -127,34 +125,47 @@ async function loadFiles() {
     }
 
 }
+
 // -------------------------------------
 // Single File Download
 // -------------------------------------
+
 function downloadFile(fileName) {
 
-    window.open(
-        `${API}/download/${fileName}`,
-        "_blank"
-    );
+    const a = document.createElement("a");
+
+    a.href = `${API}/download/${encodeURIComponent(fileName)}`;
+
+    a.setAttribute("download", "");
+
+    a.style.display = "none";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    document.body.removeChild(a);
 
 }
 
 // -------------------------------------
 // Get Selected Files
 // -------------------------------------
+
 function getSelectedFiles() {
 
     return Array.from(
 
         document.querySelectorAll(".fileCheck:checked")
 
-    ).map(cb => decodeURIComponent(cb.value));
+    ).map(cb => cb.value);
 
 }
 
 // -------------------------------------
 // Download Selected ZIP
 // -------------------------------------
+
 async function downloadSelected() {
 
     const files = getSelectedFiles();
@@ -205,7 +216,7 @@ async function downloadSelected() {
 
         const blob = await response.blob();
 
-        const url = window.URL.createObjectURL(blob);
+        const url = URL.createObjectURL(blob);
 
         const a = document.createElement("a");
 
@@ -219,7 +230,7 @@ async function downloadSelected() {
 
         a.remove();
 
-        window.URL.revokeObjectURL(url);
+        URL.revokeObjectURL(url);
 
     }
 
@@ -233,10 +244,10 @@ async function downloadSelected() {
 
 }
 
+// -------------------------------------
+// Select All
+// -------------------------------------
 
-// -------------------------------------
-// Select / Unselect All
-// -------------------------------------
 const selectAll = document.getElementById("selectAll");
 
 selectAll.addEventListener("change", () => {
@@ -252,6 +263,7 @@ selectAll.addEventListener("change", () => {
 // -------------------------------------
 // Keep Select All Updated
 // -------------------------------------
+
 document.addEventListener("change", (e) => {
 
     if (!e.target.classList.contains("fileCheck")) return;
@@ -260,20 +272,14 @@ document.addEventListener("change", (e) => {
 
     const checked = document.querySelectorAll(".fileCheck:checked");
 
-    if (checkboxes.length === 0) {
-
-        selectAll.checked = false;
-        return;
-
-    }
-
-    selectAll.checked = (checkboxes.length === checked.length);
+    selectAll.checked = checkboxes.length > 0 && checkboxes.length === checked.length;
 
 });
 
 // -------------------------------------
 // Refresh
 // -------------------------------------
+
 document.getElementById("refreshBtn").addEventListener("click", () => {
 
     selectAll.checked = false;
@@ -283,8 +289,9 @@ document.getElementById("refreshBtn").addEventListener("click", () => {
 });
 
 // -------------------------------------
-// Download Selected
+// Download ZIP
 // -------------------------------------
+
 document
     .getElementById("downloadSelectedBtn")
     .addEventListener("click", downloadSelected);
@@ -292,8 +299,5 @@ document
 // -------------------------------------
 // Initial Load
 // -------------------------------------
-window.addEventListener("DOMContentLoaded", () => {
 
-    loadFiles();
-
-});
+window.addEventListener("DOMContentLoaded", loadFiles);
