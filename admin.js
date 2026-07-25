@@ -22,9 +22,37 @@ async function loadFiles() {
         const data = await response.json();
 
 
-        const table = document.getElementById("fileTable");
+        const container =
+            document.getElementById("ordersContainer");
 
-        table.innerHTML = "";
+
+        if (!container) {
+
+            console.error(
+                "ordersContainer not found"
+            );
+
+            return;
+
+        }
+
+
+
+        container.innerHTML = "";
+
+
+
+        const totalOrders =
+            document.getElementById("totalOrders");
+
+
+        if(totalOrders){
+
+            totalOrders.innerHTML =
+                data.orders?.length || 0;
+
+        }
+
 
 
 
@@ -35,15 +63,15 @@ async function loadFiles() {
         ) {
 
 
-            table.innerHTML = `
+            container.innerHTML = `
 
-                <tr>
+                <div class="bg-white rounded-xl shadow-md p-8 text-center text-gray-500">
 
-                    <td colspan="6">
-                        No Orders Found
-                    </td>
+                    <i class="fa-solid fa-folder-open text-4xl mb-3"></i>
 
-                </tr>
+                    <p>No Files Found</p>
+
+                </div>
 
             `;
 
@@ -54,7 +82,7 @@ async function loadFiles() {
 
 
 
-        data.orders.forEach((order, index) => {
+        data.orders.forEach((order,index)=>{
 
 
 
@@ -62,60 +90,22 @@ async function loadFiles() {
 
 
 
-            order.files.forEach(file => {
-
-
-
-                const ext =
-                    file.displayName
-                    .split(".")
-                    .pop()
-                    .toLowerCase();
+            order.files.forEach(file=>{
 
 
 
                 let icon = "📄";
 
 
+                if(file.mimetype?.includes("image")){
 
-                if (
-                    [
-                        "jpg",
-                        "jpeg",
-                        "png",
-                        "webp"
-                    ].includes(ext)
-                ) {
-
-                    icon = "🖼️";
+                    icon="🖼️";
 
                 }
 
-                else if (ext === "pdf") {
+                else if(file.mimetype?.includes("pdf")){
 
-                    icon = "📕";
-
-                }
-
-                else if (
-                    [
-                        "doc",
-                        "docx"
-                    ].includes(ext)
-                ) {
-
-                    icon = "📘";
-
-                }
-
-                else if (
-                    [
-                        "xls",
-                        "xlsx"
-                    ].includes(ext)
-                ) {
-
-                    icon = "📗";
+                    icon="📕";
 
                 }
 
@@ -123,131 +113,157 @@ async function loadFiles() {
 
                 filesHTML += `
 
-                    <div style="margin:5px 0">
+
+                <div class="flex items-center justify-between py-2 border-b">
+
+
+                    <div>
 
                         ${icon}
 
-                        ${file.displayName}
-
-                        <button
-
-                            class="download-btn"
-
-                            onclick="
-                            downloadFile(
-                            '${order.jobId}',
-                            '${file.storedName}'
-                            )">
-
-                            ⬇
-
-                        </button>
+                        <span class="ml-2">
+                            ${file.displayName}
+                        </span>
 
 
                     </div>
 
-                `;
 
+
+                    <button
+
+                    onclick="
+                    downloadFile(
+                    '${order.jobId}',
+                    '${file.storedName}'
+                    )"
+
+                    class="bg-blue-600 text-white px-3 py-1 rounded">
+
+                    ⬇ Download
+
+                    </button>
+
+
+                </div>
+
+
+                `;
 
 
             });
 
 
 
-            table.insertAdjacentHTML(
+
+            container.insertAdjacentHTML(
+
                 "beforeend",
 
                 `
 
-                <tr>
+
+                <div class="bg-white rounded-xl shadow-md p-5">
 
 
-                    <td>
-                        ${index + 1}
-                    </td>
+                    <div class="flex justify-between items-center border-b pb-3 mb-3">
+
+
+                        <div>
+
+                            <p class="text-sm text-gray-500">
+
+                            Order #${index+1}
+
+                            </p>
+
+
+                            <h2 class="font-bold text-blue-800">
+
+                            ${order.jobId}
+
+                            </h2>
+
+
+                        </div>
 
 
 
-                    <td>
+                        <div class="text-right">
 
-                        <b>
-                        ${order.jobId}
-                        </b>
-
-                    </td>
-
+                            <p>
+                            ${order.files.length}
+                            Files
+                            </p>
 
 
-                    <td>
+                            <p class="text-sm text-gray-500">
+
+                            ${new Date(order.uploadedAt).toLocaleString()}
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                    <div>
 
                         ${filesHTML}
 
-                    </td>
+                    </div>
 
 
 
-                    <td>
 
-                        ${order.files.length}
-                        Files
-
-                    </td>
-
-
-
-                    <td>
-
-                        ${new Date(
-                            order.uploadedAt
-                        ).toLocaleString()}
-
-
-                    </td>
-
-
-
-                    <td>
+                    <div class="flex gap-3 mt-4">
 
 
                         <button
-
-                        class="download-btn"
 
                         onclick="
                         downloadOrderZip(
                         '${order.jobId}'
-                        )">
+                        )"
+
+                        class="bg-green-600 text-white px-4 py-2 rounded">
 
                         📦 ZIP
 
-
                         </button>
+
 
 
                         <button
 
-                        class="delete-btn"
-
                         onclick="
                         deleteOrder(
                         '${order.jobId}'
-                        )">
+                        )"
+
+                        class="bg-red-600 text-white px-4 py-2 rounded">
 
                         🗑 Delete
-
 
                         </button>
 
 
-                    </td>
+
+                    </div>
 
 
-                </tr>
+                </div>
+
 
                 `
 
-            );
 
+            );
 
 
         });
@@ -257,7 +273,7 @@ async function loadFiles() {
     }
 
 
-    catch(err) {
+    catch(err){
 
 
         console.error(
@@ -266,20 +282,23 @@ async function loadFiles() {
         );
 
 
-        document.getElementById("fileTable")
-        .innerHTML = `
+        const container =
+            document.getElementById("ordersContainer");
 
-            <tr>
 
-                <td colspan="6">
+        if(container){
 
-                    Failed to load orders.
+            container.innerHTML = `
 
-                </td>
+            <div class="bg-white p-5 rounded-xl">
 
-            </tr>
+                ❌ Failed to load orders.
 
-        `;
+            </div>
+
+            `;
+
+        }
 
 
     }
@@ -294,23 +313,190 @@ async function loadFiles() {
 // Single File Download
 // -------------------------------------
 
-function downloadFile(jobId, fileName) {
+function downloadFile(jobId,fileName){
+
 
     const url =
-        `${API}/download/${encodeURIComponent(jobId)}/${encodeURIComponent(fileName)}`;
+    `${API}/download/${encodeURIComponent(jobId)}/${encodeURIComponent(fileName)}`;
 
 
-    const a = document.createElement("a");
+    const a =
+    document.createElement("a");
 
-    a.href = url;
 
-    a.download = "";
+    a.href=url;
+
+
+    a.target="_blank";
+
 
     document.body.appendChild(a);
 
+
     a.click();
 
-    document.body.removeChild(a);
+
+    a.remove();
+
+
+}
+
+
+
+
+// -------------------------------------
+// Download ZIP
+// -------------------------------------
+
+async function downloadOrderZip(jobId){
+
+
+    try{
+
+
+        const response =
+        await fetch(
+
+            `${API}/download-zip`,
+
+            {
+
+                method:"POST",
+
+                headers:{
+
+                    "Content-Type":
+                    "application/json"
+
+                },
+
+                body:JSON.stringify({
+
+                    jobId
+
+                })
+
+            }
+
+        );
+
+
+
+        const blob =
+        await response.blob();
+
+
+
+        const url =
+        URL.createObjectURL(blob);
+
+
+
+        const a =
+        document.createElement("a");
+
+
+        a.href=url;
+
+
+        a.download =
+        `${jobId}.zip`;
+
+
+        a.click();
+
+
+
+        URL.revokeObjectURL(url);
+
+
+    }
+
+    catch(err){
+
+
+        console.error(
+            "ZIP Error:",
+            err
+        );
+
+
+        alert(
+            "ZIP Download Failed"
+        );
+
+
+    }
+
+
+}
+
+
+
+
+// -------------------------------------
+// Delete Order
+// -------------------------------------
+
+async function deleteOrder(jobId){
+
+
+    if(!confirm(`Delete ${jobId}?`)){
+
+        return;
+
+    }
+
+
+    try{
+
+
+        const response =
+        await fetch(
+
+            `${API}/order/${encodeURIComponent(jobId)}`,
+
+            {
+
+                method:"DELETE"
+
+            }
+
+        );
+
+
+        const data =
+        await response.json();
+
+
+
+        if(data.success){
+
+
+            alert(
+                "Order deleted successfully"
+            );
+
+
+            loadFiles();
+
+
+        }
+
+
+
+    }
+
+    catch(err){
+
+
+        console.error(
+            err
+        );
+
+
+    }
+
 
 }
 
@@ -325,228 +511,16 @@ document
 .getElementById("refreshBtn")
 ?.addEventListener(
 "click",
-()=>{
-
-    loadFiles();
-
-});
+loadFiles
+);
 
 
 
-
-// Initial Load
+// -------------------------------------
+// Start
+// -------------------------------------
 
 window.addEventListener(
 "DOMContentLoaded",
 loadFiles
 );
-// -------------------------------------
-// Download Complete Order ZIP
-// -------------------------------------
-
-async function downloadOrderZip(jobId) {
-
-
-    try {
-
-
-        const response = await fetch(
-
-            `${API}/download-zip`,
-
-            {
-
-                method: "POST",
-
-                headers: {
-
-                    "Content-Type":
-                    "application/json"
-
-                },
-
-                body: JSON.stringify({
-
-                    jobId
-
-                })
-
-            }
-
-        );
-
-
-
-        if (!response.ok) {
-
-
-            const error =
-                await response.json();
-
-
-            alert(
-                error.message ||
-                "ZIP Download Failed."
-            );
-
-
-            return;
-
-
-        }
-
-
-
-        const blob =
-            await response.blob();
-
-
-
-        const url =
-            URL.createObjectURL(blob);
-
-
-
-        const a =
-            document.createElement("a");
-
-
-
-        a.href = url;
-
-
-
-        a.download =
-            `${jobId}.zip`;
-
-
-
-        document.body.appendChild(a);
-
-
-
-        a.click();
-
-
-
-        a.remove();
-
-
-
-        URL.revokeObjectURL(url);
-
-
-
-    }
-
-    catch(err) {
-
-
-        console.error(
-            "ZIP Error:",
-            err
-        );
-
-
-        alert(
-            "ZIP Download Failed."
-        );
-
-
-    }
-
-
-}
-
-
-
-// -------------------------------------
-// Delete Complete Order
-// -------------------------------------
-
-async function deleteOrder(jobId) {
-
-
-    const confirmDelete =
-        confirm(
-            `Delete ${jobId} ?`
-        );
-
-
-
-    if(!confirmDelete){
-
-        return;
-
-    }
-
-
-
-    try {
-
-
-        const response =
-            await fetch(
-
-                `${API}/order/${encodeURIComponent(jobId)}`,
-
-                {
-
-                    method:"DELETE"
-
-                }
-
-            );
-
-
-
-        const data =
-            await response.json();
-
-
-
-        if(data.success){
-
-
-            alert(
-                "Order deleted successfully."
-            );
-
-
-            loadFiles();
-
-
-        }
-        else{
-
-
-            alert(
-                data.message ||
-                "Delete failed."
-            );
-
-
-        }
-
-
-
-    }
-
-    catch(err){
-
-
-        console.error(
-            "Delete Error:",
-            err
-        );
-
-
-        alert(
-            "Delete failed."
-        );
-
-
-    }
-
-
-}
