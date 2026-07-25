@@ -1,4 +1,4 @@
-const API = "https://api.falgunixerox.in";
+const API = "https://api.falgunixerox.in/upload";
 
 async function loadFiles() {
 
