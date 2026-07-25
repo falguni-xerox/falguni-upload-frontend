@@ -1,4 +1,4 @@
-const API = "https://falguni-upload-backend.onrender.com/upload";
+const API = "https://api.falgunixerox.in";
 
 async function loadFiles() {
 
