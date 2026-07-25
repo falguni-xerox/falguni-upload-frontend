@@ -2,11 +2,13 @@ const fileInput = document.getElementById("fileInput");
 const uploadBtn = document.getElementById("uploadBtn");
 const result = document.getElementById("result");
 
+
 // =====================================
 // Upload Files
 // =====================================
 
 uploadBtn.addEventListener("click", async () => {
+
 
     if (fileInput.files.length === 0) {
 
@@ -15,7 +17,9 @@ uploadBtn.addEventListener("click", async () => {
 
     }
 
+
     const formData = new FormData();
+
 
     for (let file of fileInput.files) {
 
@@ -23,55 +27,159 @@ uploadBtn.addEventListener("click", async () => {
 
     }
 
+
     result.innerHTML = `
+
         <div class="success">
+
             <h2>⏳ Uploading...</h2>
-            <p>Please wait while your files are being uploaded.</p>
+
+            <p>
+                Please wait while your files are being uploaded.
+            </p>
+
         </div>
+
     `;
+
 
     try {
 
-        const response = await fetch("https://falguni-upload-backend.onrender.com/upload", {
 
-            method: "POST",
-            body: formData
+        const response = await fetch(
+            "https://falguni-upload-backend.onrender.com/upload",
+            {
 
-        });
+                method: "POST",
+
+                body: formData
+
+            }
+        );
+
+
 
         if (!response.ok) {
 
-            throw new Error("Server Error : " + response.status);
+
+            throw new Error(
+                "Server Error : " + response.status
+            );
+
 
         }
+
+
 
         const data = await response.json();
 
+
+
         if (!data.success) {
 
-            throw new Error("Upload Failed");
+
+            throw new Error(
+                "Upload Failed"
+            );
+
 
         }
 
+
+
         let uploadedList = "";
+
+
 
         data.files.forEach(file => {
 
-            uploadedList += `<li>${file.name}</li>`;
+
+            uploadedList +=
+                `<li>${file.displayName || file.originalname || "File Uploaded"}</li>`;
+
 
         });
 
+
+
+        let timeLeft =
+            data.displayTime || 300;
+
+
+
         result.innerHTML = `
+
 
             <div class="success">
 
-                <h2>✅ Upload Successful</h2>
+
+                <h2>
+                    ✅ Upload Successful
+                </h2>
+
+
+
+                <div style="
+                    background:#f2f7ff;
+                    padding:15px;
+                    border-radius:10px;
+                    margin:15px 0;
+                    text-align:center;
+                ">
+
+
+                    <h3>
+                        🧾 Your Order Number
+                    </h3>
+
+
+
+                    <h1 style="
+                        color:#0066cc;
+                        font-size:32px;
+                    ">
+
+                        ${data.orderNumber}
+
+                    </h1>
+
+
+
+                    <p>
+                        Show this number at Falguni Xerox.
+                    </p>
+
+
+
+                    <h3 id="timer">
+                        ⏳ 05:00
+                    </h3>
+
+
+                </div>
+
+
+
 
                 <p>
-                    <strong>${data.count}</strong> File(s) Uploaded Successfully.
+
+                    <strong>
+                        ${data.count}
+                    </strong>
+
+                    File(s) Uploaded Successfully.
+
                 </p>
 
-                <h3>📁 Uploaded Files</h3>
+
+
+
+                <h3>
+                    📁 Uploaded Files
+                </h3>
+
+
+
 
                 <ol>
 
@@ -79,34 +187,125 @@ uploadBtn.addEventListener("click", async () => {
 
                 </ol>
 
+
+
+
                 <p style="margin-top:20px;">
-                    Please visit <strong>Falguni Xerox & Computer Work</strong> for printing.
+
+                    Please visit 
+                    <strong>
+                        Falguni Xerox & Computer Work
+                    </strong>
+
+                    for printing.
+
                 </p>
+
+
 
             </div>
 
+
         `;
+
+
+
+        const timerElement =
+            document.getElementById("timer");
+
+
+
+        const countdown =
+            setInterval(() => {
+
+
+
+                timeLeft--;
+
+
+
+                let minutes =
+                    Math.floor(timeLeft / 60);
+
+
+
+                let seconds =
+                    timeLeft % 60;
+
+
+
+                seconds =
+                    seconds < 10
+                    ? "0" + seconds
+                    : seconds;
+
+
+
+                if(timeLeft > 0){
+
+
+                    timerElement.innerHTML =
+                        `⏳ ${minutes}:${seconds}`;
+
+
+                }
+                else{
+
+
+                    clearInterval(countdown);
+
+
+                    timerElement.innerHTML =
+                        "Order Number Expired";
+
+
+                }
+
+
+
+            },1000);
+
+
+
 
         fileInput.value = "";
 
+
+
     }
+
 
     catch (err) {
 
+
         console.error(err);
+
+
 
         result.innerHTML = `
 
+
             <div class="success">
 
-                <h2>❌ Upload Failed</h2>
 
-                <p>${err.message}</p>
+                <h2>
+                    ❌ Upload Failed
+                </h2>
+
+
+
+                <p>
+                    ${err.message}
+                </p>
+
 
             </div>
 
+
         `;
 
+
     }
+
 
 });
