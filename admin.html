@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Falguni Upload Portal</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🖨️ Falguni Upload Portal</h1>
+
+        <h2>Admin Dashboard</h2>
+
+        <div class="toolbar">
+
+            <label>
+
+                <input type="checkbox" id="selectAll">
+
+                <strong>Select All</strong>
+
+            </label>
+
+            &nbsp;&nbsp;
+
+
+            <button id="downloadSelectedBtn">
+                📦 Download Selected (ZIP)
+            </button>
+
+            <button id="refreshBtn">
+                🔄 Refresh
+            </button>
+
+        </div>
+
+        <br>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th width="50">
+                        ✓
+                    </th>
+
+                    <th width="60">
+                        No
+                    </th>
+
+                    <th>
+                        File Name
+                    </th>
+
+                    <th width="120">
+                        Size
+                    </th>
+
+                    <th width="100">
+                        Type
+                    </th>
+
+                    <th width="180">
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="fileTable">
+
+                <tr>
+
+                    <td colspan="6">
+
+                        No Files Found
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
