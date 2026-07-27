@@ -1,91 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Falguni Xerox - File Upload</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+<div class="logo">🖨️</div>
 
-<div class="container">
+<h1>Falguni Xerox</h1>
 
-    <div class="logo">🖨️</div>
+<p class="subtitle">
+    Secure File Upload for Printing
+</p>
 
-    <h1>Falguni Xerox</h1>
+<!-- Upload Section -->
+<div id="uploadSection">
 
-    <p class="subtitle">
-        Secure File Upload for Printing
+    <div class="upload-box">
+        <div class="upload-icon">📁</div>
+        <h2>Choose Your Files</h2>
+        <input type="file" id="fileInput" multiple>
+    </div>
+
+    <button id="uploadBtn">
+        ⬆️ Upload Files
+    </button>
+
+    <p id="uploadStatus"
+       style="text-align:center; margin-top:8px; font-size:14px; color:#555;">
     </p>
 
-    <!-- Upload Section -->
-    <div id="uploadSection">
+    <!-- Feature Cards -->
+    <div class="info-grid">
 
-        <div class="upload-box">
-            <div class="upload-icon">📁</div>
-            <h2>Choose Your Files</h2>
-            <input type="file" id="fileInput" multiple>
+        <div class="feature-card">
+            <span>🔒</span>
+            <div>
+                <h3>Secure Upload</h3>
+                <p>Fast & Safe Printing</p>
+            </div>
         </div>
 
-        <button id="uploadBtn">
-            ⬆️ Upload Files
-        </button>
-
-        <p id="uploadStatus" style="text-align:center; margin-top:8px; font-size:14px; color:#555;"></p>
-
-        <!-- New Card Grid -->
-        <div class="info-grid">
-            <div class="feature-card">
-                <span>🔒</span>
-                <div>
-                    <h3>Secure Upload</h3>
-                    <p>Fast & Safe Printing</p>
-                </div>
+        <div class="feature-card">
+            <span>📄</span>
+            <div>
+                <h3>Supported Files</h3>
+                <p>PDF • JPG • PNG • DOCX • XLSX • PPTX</p>
             </div>
+        </div>
 
-            <div class="feature-card">
-                <span>📄</span>
-                <div>
-                    <h3>Supported Files</h3>
-                    <p>PDF • JPG • PNG • DOCX • XLSX • PPTX</p>
-                </div>
+        <!-- Need Help -->
+        <div class="contact-card">
+            <span>📞</span>
+            <div>
+                <h3>Need Help?</h3>
+                <a href="https://wa.me/918320217733" target="_blank">
+                    Call / WhatsApp : +91 8320217733
+                </a>
             </div>
+        </div>
 
-            <div class="feature-card">
-                <span>📂</span>
-                <div>
-                    <h3>Upload Limit</h3>
-                    <p>Up to 100 Files</p>
-                </div>
-            </div>
-
-            <div class="contact-card">
-                <span>📞</span>
-                <div>
-                    <h3>Need Help?</h3>
-                    <p>Call / WhatsApp</p>
-                    <a href="https://wa.me/918320217733" target="_blank">+91 8320217733</a>
-                </div>
-            </div>
-
-            <div class="footer-card">
-                <span>📍</span>
-                <div>
-                    <h3>Falguni Xerox & Computer Work</h3>
-                    <p>Print • Xerox • Scan • Lamination</p>
-                </div>
+        <!-- Footer -->
+        <div class="footer-card">
+            <span>📍</span>
+            <div>
+                <h3>Falguni Xerox & Computer Work</h3>
+                <p>Print • Xerox • Scan • Lamination</p>
             </div>
         </div>
 
     </div>
-    <!-- End Upload Section -->
-
-    <!-- Success / Result -->
-    <div id="result"></div>
 
 </div>
+<!-- End Upload Section -->
 
-<script src="script.js"></script>
-</body>
-</html>
+<!-- Success / Result -->
+<div id="result"></div>
