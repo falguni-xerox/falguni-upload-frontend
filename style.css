@@ -75,7 +75,7 @@ h2{
     border: 2px dashed #3b82f6;
     background: #eff6ff;
     border-radius: 16px;
-    padding: 20px;
+    padding: 12px;
     text-align: center;
     margin-bottom: 16px;
 }
@@ -83,6 +83,7 @@ h2{
 .upload-icon{
     font-size: 30px;
     margin-bottom: 8px;
+    margin-top: 2;
 }
 
 #fileInput{
