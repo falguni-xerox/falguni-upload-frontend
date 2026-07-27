@@ -1,71 +1,89 @@
-<div class="logo">🖨️</div>
+<!DOCTYPE html>
+<html lang="en">
 
-<h1>Falguni Xerox</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<p class="subtitle">
-    Secure File Upload for Printing
-</p>
+    <title>Falguni Xerox - Secure File Upload</title>
 
-<!-- Upload Section -->
-<div id="uploadSection">
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    <div class="upload-box">
-        <div class="upload-icon">📁</div>
-        <h2>Choose Your Files</h2>
-        <input type="file" id="fileInput" multiple>
+<body>
+
+    <div class="container">
+
+        <div class="logo">🖨️</div>
+
+        <h1>Falguni Xerox</h1>
+
+        <p class="subtitle">
+            Secure File Upload for Printing
+        </p>
+
+        <!-- Upload Section -->
+        <div id="uploadSection">
+
+            <div class="upload-box">
+                <div class="upload-icon">📁</div>
+                <h2>Choose Your Files</h2>
+                <input type="file" id="fileInput" multiple>
+            </div>
+
+            <button id="uploadBtn">
+                ⬆️ Upload Files
+            </button>
+
+            <p id="uploadStatus"></p>
+
+            <div class="info-grid">
+
+                <div class="feature-card">
+                    <span>🔒</span>
+                    <div>
+                        <h3>Secure Upload</h3>
+                        <p>Fast & Safe Printing</p>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <span>📄</span>
+                    <div>
+                        <h3>Supported Files</h3>
+                        <p>PDF • JPG • PNG • DOCX • XLSX • PPTX</p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <span>📞</span>
+                    <div>
+                        <h3>Need Help?</h3>
+                        <a href="https://wa.me/918320217733" target="_blank">
+                            Call / WhatsApp : +91 8320217733
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-card">
+                    <span>📍</span>
+                    <div>
+                        <h3>Falguni Xerox & Computer Work</h3>
+                        <p>Print • Xerox • Scan • Lamination</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Success / Result -->
+        <div id="result"></div>
+
     </div>
 
-    <button id="uploadBtn">
-        ⬆️ Upload Files
-    </button>
+    <script src="script.js"></script>
 
-    <p id="uploadStatus"
-       style="text-align:center; margin-top:8px; font-size:14px; color:#555;">
-    </p>
+</body>
 
-    <!-- Feature Cards -->
-    <div class="info-grid">
-
-        <div class="feature-card">
-            <span>🔒</span>
-            <div>
-                <h3>Secure Upload</h3>
-                <p>Fast & Safe Printing</p>
-            </div>
-        </div>
-
-        <div class="feature-card">
-            <span>📄</span>
-            <div>
-                <h3>Supported Files</h3>
-                <p>PDF • JPG • PNG • DOCX • XLSX • PPTX</p>
-            </div>
-        </div>
-
-        <!-- Need Help -->
-        <div class="contact-card">
-            <span>📞</span>
-            <div>
-                <h3>Need Help?</h3>
-                <a href="https://wa.me/918320217733" target="_blank">
-                    Call / WhatsApp : +91 8320217733
-                </a>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer-card">
-            <span>📍</span>
-            <div>
-                <h3>Falguni Xerox & Computer Work</h3>
-                <p>Print • Xerox • Scan • Lamination</p>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-<!-- End Upload Section -->
-
-<!-- Success / Result -->
-<div id="result"></div>
+</html>
