@@ -1,326 +1,270 @@
 /* ===========================================
-   FALGUNI UPLOAD PORTAL V3
-   Professional Card UI
+FALGUNI UPLOAD PORTAL V3
+Professional Card UI
 =========================================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
-
 body{
-    font-family:"Poppins","Segoe UI",Arial,sans-serif;
-    background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);
-    color:#222;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:16px;
+font-family:"Poppins","Segoe UI",Arial,sans-serif;
+background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);
+color:#222;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:16px;
 }
-
 /* ===========================================
-   MAIN CONTAINER
+MAIN CONTAINER
 =========================================== */
-
 .container{
-    width:100%;
-    max-width:500px;
-    background:#fff;
-    padding:24px;
-    border-radius:22px;
-    box-shadow:0 12px 30px rgba(37,99,235,.12);
+width:100%;
+max-width:480px;
+background:#fff;
+padding:22px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(37,99,235,.12);
 }
-
 /* ===========================================
-   HEADER
+HEADER
 =========================================== */
-
 .logo{
-    font-size:40px;
-    text-align:center;
-    margin-bottom:6px;
+font-size:34px;
+text-align:center;
+margin-bottom:4px;
 }
-
 h1{
-    color:#1e40af;
-    font-size:32px;
-    font-weight:700;
-    text-align:center;
-    margin-bottom:4px;
+color:#1e40af;
+font-size:30px;
+font-weight:700;
+text-align:center;
+margin-bottom:4px;
 }
-
 .subtitle{
-    color:#64748b;
-    font-size:15px;
-    text-align:center;
-    margin-bottom:20px;
+color:#64748b;
+font-size:14px;
+text-align:center;
+margin-bottom:16px;
 }
-
 /* ===========================================
-   UPLOAD BOX
+UPLOAD BOX
 =========================================== */
-
 .upload-box{
-    border:3px dashed #3b82f6;
-    background:#eff6ff;
-    border-radius:18px;
-    padding:22px 18px;
-    text-align:center;
-    margin-bottom:18px;
+border:2px dashed #3b82f6;
+background:#eff6ff;
+border-radius:14px;
+padding:16px;
+text-align:center;
+margin-bottom:14px;
 }
-
 .upload-icon{
-    font-size:40px;
-    margin-bottom:10px;
+font-size:30px;
+margin-bottom:6px;
 }
-
 .upload-box h2{
-    color:#1e3a8a;
-    font-size:24px;
-    font-weight:700;
-    margin-bottom:18px;
+color:#1e3a8a;
+font-size:20px;
+font-weight:600;
+margin-bottom:10px;
 }
-
 #fileInput{
-    width:100%;
-    cursor:pointer;
-    font-size:17px;
+width:100%;
+margin-top:8px;
+cursor:pointer;
 }
-
 #fileInput::file-selector-button{
-    background:linear-gradient(90deg,#2563eb,#1d4ed8);
-    color:#fff;
-    border:none;
-    padding:13px 22px;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:16px;
-    font-weight:700;
-    margin-right:16px;
-    transition:.25s;
+background:linear-gradient(90deg,#2563eb,#1d4ed8);
+color:#fff;
+border:none;
+padding:9px 16px;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+margin-right:12px;
+transition:.25s;
 }
-
 #fileInput::file-selector-button:hover{
-    transform:translateY(-2px);
-    box-shadow:0 6px 18px rgba(37,99,235,.30);
+opacity:.9;
 }
-
 /* ===========================================
-   UPLOAD BUTTON
+BUTTON
 =========================================== */
-
 #uploadBtn{
-    width:100%;
-    background:linear-gradient(90deg,#2563eb,#1d4ed8);
-    color:#fff;
-    border:none;
-    height:58px;
-    border-radius:14px;
-    font-size:22px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.25s;
-    margin-bottom:18px;
+width:100%;
+background:linear-gradient(90deg,#2563eb,#1d4ed8);
+color:#fff;
+border:none;
+padding:12px;
+border-radius:10px;
+font-size:20px;
+font-weight:700;
+cursor:pointer;
+transition:.25s;
+margin-bottom:16px;
 }
-
 #uploadBtn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(37,99,235,.30);
+transform:translateY(-2px);
+box-shadow:0 6px 15px rgba(37,99,235,.25);
 }
-
 #uploadBtn:active{
-    transform:scale(.98);
+transform:scale(.98);
 }
-
 #uploadStatus{
-    text-align:center;
-    margin-bottom:16px;
-    font-size:14px;
-    color:#555;
+text-align:center;
+margin-bottom:14px;
+font-size:13px;
+color:#555;
 }
-
 /* ===========================================
-   INFO CARDS
+CARDS
 =========================================== */
-
 .info-grid{
-    display:grid;
-    gap:12px;
+display:grid;
+gap:10px;
 }
-
 .feature-card,
 .contact-card,
 .footer-card{
-    background:#f8fafc;
-    border-left:5px solid #2563eb;
-    border-radius:14px;
-    padding:16px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    transition:.25s;
+background:#f8fafc;
+border-left:4px solid #2563eb;
+border-radius:12px;
+padding:12px;
+display:flex;
+align-items:center;
+gap:10px;
+transition:.25s;
 }
-
 .feature-card:hover,
 .contact-card:hover,
 .footer-card:hover{
-    transform:translateY(-2px);
-    box-shadow:0 6px 16px rgba(0,0,0,.08);
+transform:translateY(-2px);
+box-shadow:0 6px 15px rgba(0,0,0,.06);
 }
-
 .feature-card span,
 .contact-card span,
 .footer-card span{
-    font-size:28px;
-    flex-shrink:0;
+font-size:22px;
+flex-shrink:0;
 }
-
 .feature-card h3,
 .contact-card h3,
 .footer-card h3{
-    color:#1e3a8a;
-    font-size:18px;
-    font-weight:700;
-    margin-bottom:3px;
+color:#1e3a8a;
+font-size:16px;
+font-weight:600;
+margin-bottom:2px;
 }
-
 .feature-card p,
 .contact-card p,
 .footer-card p{
-    color:#64748b;
-    font-size:14px;
-    line-height:1.5;
+color:#64748b;
+font-size:13px;
+line-height:1.4;
 }
-
 .contact-card a{
-    color:#2563eb;
-    font-size:14px;
-    font-weight:600;
-    text-decoration:none;
-    word-break:break-word;
+color:#2563eb;
+font-size:13px;
+font-weight:600;
+text-decoration:none;
+word-break:break-word;
 }
-
 .contact-card a:hover{
-    text-decoration:underline;
+text-decoration:underline;
 }
-
 /* ===========================================
-   SUCCESS
+SUCCESS
 =========================================== */
-
 #result{
-    margin-top:20px;
+margin-top:18px;
 }
-
 .success{
-    background:#e8f5e9;
-    border-left:5px solid #2e7d32;
-    border-radius:14px;
-    padding:18px;
+background:#e8f5e9;
+border-left:5px solid #2e7d32;
+border-radius:12px;
+padding:18px;
 }
-
 .success h2{
-    color:#2e7d32;
-    font-size:22px;
-    margin-bottom:10px;
+color:#2e7d32;
+font-size:20px;
+margin-bottom:10px;
+text-align:left;
 }
-
 .success p{
-    font-size:15px;
-    margin:6px 0;
+font-size:14px;
+margin:6px 0;
 }
-
 /* ===========================================
-   MOBILE
+MOBILE
 =========================================== */
-
 @media (max-width:768px){
-
-    body{
-        padding:12px;
-        align-items:flex-start;
-    }
-
-    .container{
-        max-width:100%;
-        padding:20px;
-        border-radius:20px;
-    }
-
-    .logo{
-        font-size:42px;
-    }
-
-    h1{
-        font-size:30px;
-    }
-
-    .subtitle{
-        font-size:15px;
-        margin-bottom:18px;
-    }
-
-    .upload-box{
-        padding:20px 16px;
-    }
-
-    .upload-icon{
-        font-size:36px;
-    }
-
-    .upload-box h2{
-        font-size:22px;
-        margin-bottom:16px;
-    }
-
-    #fileInput{
-        font-size:16px;
-    }
-
-    #fileInput::file-selector-button{
-        padding:13px 20px;
-        font-size:16px;
-        border-radius:12px;
-    }
-
-    #uploadBtn{
-        height:60px;
-        font-size:22px;
-        border-radius:14px;
-    }
-
-    .feature-card,
-    .contact-card,
-    .footer-card{
-        padding:14px;
-        gap:12px;
-    }
-
-    .feature-card span,
-    .contact-card span,
-    .footer-card span{
-        font-size:26px;
-    }
-
-    .feature-card h3,
-    .contact-card h3,
-    .footer-card h3{
-        font-size:18px;
-    }
-
-    .feature-card p,
-    .contact-card p,
-    .contact-card a,
-    .footer-card p{
-        font-size:14px;
-    }
-
-    .success{
-        padding:18px;
-    }
-
+body{
+padding:10px;
+align-items:flex-start;
+}
+.container{
+padding:18px;
+border-radius:16px;
+}
+.logo{
+font-size:30px;
+}
+h1{
+font-size:27px;
+}
+.subtitle{
+font-size:13px;
+margin-bottom:14px;
+}
+.upload-box{
+padding:14px;
+margin-bottom:12px;
+}
+.upload-icon{
+font-size:24px;
+}
+.upload-box h2{
+font-size:18px;
+margin-bottom:8px;
+}
+#fileInput::file-selector-button{
+padding:8px 14px;
+font-size:14px;
+}
+#uploadBtn{
+padding:11px;
+font-size:15px;
+margin-bottom:14px;
+}
+.info-grid{
+gap:8px;
+}
+.feature-card,
+.contact-card,
+.footer-card{
+padding:11px;
+gap:8px;
+}
+.feature-card span,
+.contact-card span,
+.footer-card span{
+font-size:19px;
+}
+.feature-card h3,
+.contact-card h3,
+.footer-card h3{
+font-size:15px;
+}
+.feature-card p,
+.contact-card p,
+.contact-card a,
+.footer-card p{
+font-size:12px;
+}
+.success{
+padding:16px;
+}
 }
