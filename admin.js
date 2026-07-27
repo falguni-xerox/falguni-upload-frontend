@@ -189,3 +189,6 @@ window.addEventListener("DOMContentLoaded", loadFiles);
 setInterval(() => {
     loadFiles();
 }, 3000);
+
+
+END OF admin.js
