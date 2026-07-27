@@ -517,3 +517,7 @@ window.addEventListener(
 "DOMContentLoaded",
 loadFiles
 );
+// 3 sec Auto Refresh
+setInterval(() => {
+    loadFiles():
+}, 3000);
