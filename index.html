@@ -25,11 +25,35 @@
         <!-- Upload Section -->
         <div id="uploadSection">
 
-            <div class="upload-box">
-                <div class="upload-icon">📁</div>
-                <h2>Choose Your Files</h2>
-                <input type="file" id="fileInput" multiple>
-            </div>
+<div class="upload-box">
+
+    <div class="upload-top-icon">📄</div>
+
+    <h2>Upload Files</h2>
+
+    <p class="file-types">
+        PDF, JPG, JPEG, PNG
+    </p>
+
+    <label for="fileInput" class="upload-area">
+
+        <div class="folder-icon">📂</div>
+
+        <h3>Select Files</h3>
+
+        <p>or tap here to browse</p>
+
+        <input
+            type="file"
+            id="fileInput"
+            multiple
+            accept=".pdf,.jpg,.jpeg,.png"
+            hidden
+        >
+
+    </label>
+
+</div>
 
             <button id="uploadBtn">
                 ⬆️ Upload Files
