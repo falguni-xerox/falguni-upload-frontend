@@ -1,324 +1,191 @@
 /* ===========================================
-   FALGUNI UPLOAD PORTAL V3
-   Professional Card UI
+FALGUNI UPLOAD PORTAL V3
+Professional Card UI
 =========================================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
-
 body{
-    font-family:"Poppins","Segoe UI",Arial,sans-serif;
-    background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);
-    color:#222;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:16px;
+font-family:"Poppins", "Segoe UI",Arial,sans-serif;
+background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+color:#222;
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding:20px;
 }
-
 /* ===========================================
-   MAIN CONTAINER
+MAIN CONTAINER
 =========================================== */
-
 .container{
-    width:100%;
-    max-width:480px;
-    background:#fff;
-    padding:22px;
-    border-radius:18px;
-    box-shadow:0 10px 25px rgba(37,99,235,.12);
+width: 100%;
+max-width:500px;
+background:#fff;
+padding:28px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(37, 99, 235, .15);
 }
-
-/* ===========================================
-   HEADER
-=========================================== */
-
 .logo{
-    font-size:34px;
-    text-align:center;
-    margin-bottom:4px;
+font-size: 40px;
+text-align: center;
+margin-bottom: 5px;
 }
-
-h1{
-    color:#1e40af;
-    font-size:30px;
-    font-weight:700;
-    text-align:center;
-    margin-bottom:4px;
-}
-
-.subtitle{
-    color:#64748b;
-    font-size:14px;
-    text-align:center;
-    margin-bottom:16px;
-}
-
 /* ===========================================
-   UPLOAD BOX
+HEADINGS
 =========================================== */
-
+h1{
+color:#1e40af;
+font-size:32px;
+font-weight: 700;
+text-align: center;
+margin-bottom:5px;
+}
+h2{
+color:#1e3a8a;
+font-size: 20px;
+font-weight: 600;
+margin-bottom:10px;
+text-align: center;
+}
+.subtitle{
+color:#64748b;
+font-size:15px;
+text-align: center;
+margin-bottom:20px;
+}
+/* ===========================================
+UPLOAD BOX
+=========================================== */
 .upload-box{
-    border:2px dashed #3b82f6;
-    background:#eff6ff;
-    border-radius:14px;
-    padding:16px;
-    text-align:center;
-    margin-bottom:14px;
+border: 2px dashed #3b82f6;
+background: #eff6ff;
+border-radius: 16px;
+padding: 20px;
+text-align: center;
+margin-bottom: 16px;
 }
-
 .upload-icon{
-    font-size:30px;
-    margin-bottom:6px;
+font-size: 30px;
+margin-bottom: 8px;
 }
-
-.upload-box h2{
-    color:#1e3a8a;
-    font-size:20px;
-    font-weight:600;
-    margin-bottom:10px;
-}
-
 #fileInput{
-    width:100%;
-    margin-top:8px;
-    cursor:pointer;
+width:100%;
+margin-top:10px;
+cursor:pointer;
 }
-
 #fileInput::file-selector-button{
-    background:linear-gradient(90deg,#2563eb,#1d4ed8);
-    color:#fff;
-    border:none;
-    padding:9px 16px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:600;
-    margin-right:12px;
-    transition:.25s;
+background: linear-gradient(90deg, #2563eb, #1d4ed8);
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+margin-right:15px;
+transition: .2s;
 }
-
-#fileInput::file-selector-button:hover{
-    opacity:.9;
-}
-
+#fileInput::file-selector-button:hover
 /* ===========================================
-   BUTTON
+BUTTONS
 =========================================== */
-
 #uploadBtn{
-    width:100%;
-    background:linear-gradient(90deg,#2563eb,#1d4ed8);
-    color:#fff;
-    border:none;
-    padding:12px;
-    border-radius:10px;
-    font-size:20px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.25s;
-    margin-bottom:16px;
+background: linear-gradient(90deg, #2563eb, #1d4ed8);
+color:white;
+border:none;
+width:100%;
+padding:14px;
+border-radius:12px;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.2s;
+margin-bottom: 20px;
 }
-
 #uploadBtn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 6px 15px rgba(37,99,235,.25);
+transform:translateY(-2px);
+box-shadow: 0 5px 15px rgba(37, 99, 235, .3);
 }
-
 #uploadBtn:active{
-    transform:scale(.98);
+transform:scale(.98);
 }
-
-#uploadStatus{
-    text-align:center;
-    margin-bottom:14px;
-    font-size:13px;
-    color:#555;
-}
-
 /* ===========================================
-   CARDS
+INFO GRID + CARDS
 =========================================== */
-
 .info-grid{
-    display:grid;
-    gap:10px;
+display: grid;
+gap: 12px;
 }
-
-.feature-card,
-.contact-card,
-.footer-card{
-    background:#f8fafc;
-    border-left:4px solid #2563eb;
-    border-radius:12px;
-    padding:12px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    transition:.25s;
+.feature-card, .contact-card, .footer-card{
+background: #f8fafc;
+padding: 14px;
+border-radius: 12px;
+border-left: 4px solid #2563eb;
+display: flex;
+align-items: flex-start;
+gap: 12px;
 }
-
-.feature-card:hover,
-.contact-card:hover,
-.footer-card:hover{
-    transform:translateY(-2px);
-    box-shadow:0 6px 15px rgba(0,0,0,.06);
+.feature-card span, .contact-card span, .footer-card span{
+font-size: 22px;
 }
-
-.feature-card span,
-.contact-card span,
-.footer-card span{
-    font-size:22px;
-    flex-shrink:0;
+.feature-card h3, .contact-card h3, .footer-card h3{
+font-weight: 600;
+font-size: 15px;
+margin-bottom: 2px;
+color: #1e3a8a;
 }
-
-.feature-card h3,
-.contact-card h3,
-.footer-card h3{
-    color:#1e3a8a;
-    font-size:16px;
-    font-weight:600;
-    margin-bottom:2px;
+.feature-card p, .contact-card p, .footer-card p{
+font-size: 13px;
+color: #475569;
 }
-
-.feature-card p,
-.contact-card p,
-.footer-card p{
-    color:#64748b;
-    font-size:13px;
-    line-height:1.4;
-}
-
 .contact-card a{
-    color:#2563eb;
-    font-size:13px;
-    font-weight:600;
-    text-decoration:none;
-    word-break:break-word;
+color: #2563eb;
+font-weight: 600;
+text-decoration: none;
 }
-
 .contact-card a:hover{
-    text-decoration:underline;
+text-decoration: underline;
 }
-
 /* ===========================================
-   SUCCESS
+SUCCESS BOX
 =========================================== */
-
 #result{
-    margin-top:18px;
+margin-top:20px;
 }
-
 .success{
-    background:#e8f5e9;
-    border-left:5px solid #2e7d32;
-    border-radius:12px;
-    padding:18px;
+background:#e8f5e9;
+border-left:6px solid #2e7d32;
+border-radius:12px;
+padding:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
-
 .success h2{
-    color:#2e7d32;
-    font-size:20px;
-    margin-bottom:10px;
-    text-align:left;
+color:#2e7d32;
+text-align: left;
+margin-bottom:10px;
 }
-
 .success p{
-    font-size:14px;
-    margin:6px 0;
+margin:8px 0;
+font-size: 14px;
 }
-
 /* ===========================================
-   MOBILE
+RESPONSIVE
 =========================================== */
-
-@media (max-width:768px){
-
+@media(max-width:768px){
 body{
-    padding:10px;
-    align-items:flex-start;
+padding:16px;
+align-items: flex-start;
 }
-
 .container{
-    padding:18px;
-    border-radius:16px;
+padding:20px;
 }
-
-.logo{
-    font-size:30px;
-}
-
 h1{
-    font-size:27px;
+font-size:28px;
 }
-
 .subtitle{
-    font-size:13px;
-    margin-bottom:14px;
+font-size:14px;
 }
-
-.upload-box{
-    padding:14px;
-    margin-bottom:12px;
-}
-
-.upload-icon{
-    font-size:24px;
-}
-
-.upload-box h2{
-    font-size:18px;
-    margin-bottom:8px;
-}
-
-#fileInput::file-selector-button{
-    padding:8px 14px;
-    font-size:14px;
-}
-
-#uploadBtn{
-    padding:11px;
-    font-size:15px;
-    margin-bottom:14px;
-}
-
-.info-grid{
-    gap:8px;
-}
-
-.feature-card,
-.contact-card,
-.footer-card{
-    padding:11px;
-    gap:8px;
-}
-
-.feature-card span,
-.contact-card span,
-.footer-card span{
-    font-size:19px;
-}
-
-.feature-card h3,
-.contact-card h3,
-.footer-card h3{
-    font-size:15px;
-}
-
-.feature-card p,
-.contact-card p,
-.contact-card a,
-.footer-card p{
-    font-size:12px;
-}
-
-.success{
-    padding:16px;
-}
-
 }
