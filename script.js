@@ -3,16 +3,27 @@ const uploadBtn = document.getElementById("uploadBtn");
 const result = document.getElementById("result");
 const uploadSection = document.getElementById("uploadSection");
 
+let isUploading = false;
+
 // =====================================
 // Upload Files
 // =====================================
 
 uploadBtn.addEventListener("click", async () => {
 
+    if (isUploading) return;
+
     if (fileInput.files.length === 0) {
         alert("Please select files.");
         return;
     }
+
+    isUploading = true;
+
+    uploadBtn.disabled = true;
+    uploadBtn.innerHTML = "⏳ Uploading Files... Please Wait";
+    uploadBtn.style.opacity = "0.7";
+    uploadBtn.style.cursor = "not-allowed";
 
     const formData = new FormData();
 
@@ -20,12 +31,6 @@ uploadBtn.addEventListener("click", async () => {
         formData.append("files", file);
     }
 
-    result.innerHTML = `
-        <div class="success">
-            <h2>⏳ Uploading...</h2>
-            <p>Please wait while your files are being uploaded.</p>
-        </div>
-    `;
 
     try {
 
@@ -47,7 +52,6 @@ uploadBtn.addEventListener("click", async () => {
             throw new Error("Upload Failed");
         }
 
-        // Hide upload section after successful upload
         uploadSection.style.display = "none";
 
         let uploadedList = "";
@@ -140,9 +144,16 @@ uploadBtn.addEventListener("click", async () => {
         }, 1000);
 
         document.getElementById("uploadMoreBtn").addEventListener("click", () => {
+
             fileInput.value = "";
             result.innerHTML = "";
             uploadSection.style.display = "block";
+
+            uploadBtn.disabled = false;
+            uploadBtn.innerHTML = "⬆️ Upload Files";
+            uploadBtn.style.opacity = "1";
+            uploadBtn.style.cursor = "pointer";
+
         });
 
     } catch (err) {
@@ -155,6 +166,18 @@ uploadBtn.addEventListener("click", async () => {
                 <p>${err.message}</p>
             </div>
         `;
+
+    } finally {
+
+        isUploading = false;
+
+        if (uploadSection.style.display !== "none") {
+            uploadBtn.disabled = false;
+            uploadBtn.innerHTML = "⬆️ Upload Files";
+            uploadBtn.style.opacity = "1";
+            uploadBtn.style.cursor = "pointer";
+        }
+
     }
 
 });
