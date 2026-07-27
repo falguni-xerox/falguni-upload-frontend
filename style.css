@@ -68,7 +68,7 @@ h1{
     border:3px dashed #3b82f6;
     background:#eff6ff;
     border-radius:18px;
-    padding:30px 22px;
+    padding:22px 18px;
     text-align:center;
     margin-bottom:18px;
 }
@@ -95,10 +95,10 @@ h1{
     background:linear-gradient(90deg,#2563eb,#1d4ed8);
     color:#fff;
     border:none;
-    padding:18px 34px;
+    padding:13px 22px;
     border-radius:12px;
     cursor:pointer;
-    font-size:20px;
+    font-size:16px;
     font-weight:700;
     margin-right:16px;
     transition:.25s;
@@ -118,9 +118,9 @@ h1{
     background:linear-gradient(90deg,#2563eb,#1d4ed8);
     color:#fff;
     border:none;
-    height:72px;
+    height:58px;
     border-radius:14px;
-    font-size:30px;
+    font-size:22px;
     font-weight:700;
     cursor:pointer;
     transition:.25s;
@@ -265,7 +265,7 @@ h1{
     }
 
     .upload-box{
-        padding:28px 18px;
+        padding:20px 16px;
     }
 
     .upload-icon{
@@ -282,14 +282,14 @@ h1{
     }
 
     #fileInput::file-selector-button{
-        padding:18px 28px;
-        font-size:19px;
+        padding:13px 20px;
+        font-size:16px;
         border-radius:12px;
     }
 
     #uploadBtn{
-        height:78px;
-        font-size:32px;
+        height:60px;
+        font-size:22px;
         border-radius:14px;
     }
 
