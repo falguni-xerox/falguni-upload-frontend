@@ -28,11 +28,11 @@ body{
 
 .container{
     width:100%;
-    max-width:480px;
+    max-width:500px;
     background:#fff;
-    padding:22px;
-    border-radius:18px;
-    box-shadow:0 10px 25px rgba(37,99,235,.12);
+    padding:24px;
+    border-radius:22px;
+    box-shadow:0 12px 30px rgba(37,99,235,.12);
 }
 
 /* ===========================================
@@ -40,14 +40,14 @@ body{
 =========================================== */
 
 .logo{
-    font-size:34px;
+    font-size:40px;
     text-align:center;
-    margin-bottom:4px;
+    margin-bottom:6px;
 }
 
 h1{
     color:#1e40af;
-    font-size:30px;
+    font-size:32px;
     font-weight:700;
     text-align:center;
     margin-bottom:4px;
@@ -55,9 +55,9 @@ h1{
 
 .subtitle{
     color:#64748b;
-    font-size:14px;
+    font-size:15px;
     text-align:center;
-    margin-bottom:16px;
+    margin-bottom:20px;
 }
 
 /* ===========================================
@@ -65,50 +65,52 @@ h1{
 =========================================== */
 
 .upload-box{
-    border:2px dashed #3b82f6;
+    border:3px dashed #3b82f6;
     background:#eff6ff;
-    border-radius:14px;
-    padding:16px;
+    border-radius:18px;
+    padding:30px 22px;
     text-align:center;
-    margin-bottom:14px;
+    margin-bottom:18px;
 }
 
 .upload-icon{
-    font-size:30px;
-    margin-bottom:6px;
+    font-size:40px;
+    margin-bottom:10px;
 }
 
 .upload-box h2{
     color:#1e3a8a;
-    font-size:20px;
-    font-weight:600;
-    margin-bottom:10px;
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:18px;
 }
 
 #fileInput{
     width:100%;
-    margin-top:8px;
     cursor:pointer;
+    font-size:17px;
 }
 
 #fileInput::file-selector-button{
     background:linear-gradient(90deg,#2563eb,#1d4ed8);
     color:#fff;
     border:none;
-    padding:9px 16px;
-    border-radius:8px;
+    padding:18px 34px;
+    border-radius:12px;
     cursor:pointer;
-    font-weight:600;
-    margin-right:12px;
+    font-size:20px;
+    font-weight:700;
+    margin-right:16px;
     transition:.25s;
 }
 
 #fileInput::file-selector-button:hover{
-    opacity:.9;
+    transform:translateY(-2px);
+    box-shadow:0 6px 18px rgba(37,99,235,.30);
 }
 
 /* ===========================================
-   BUTTON
+   UPLOAD BUTTON
 =========================================== */
 
 #uploadBtn{
@@ -116,18 +118,18 @@ h1{
     background:linear-gradient(90deg,#2563eb,#1d4ed8);
     color:#fff;
     border:none;
-    padding:12px;
-    border-radius:10px;
-    font-size:20px;
+    height:72px;
+    border-radius:14px;
+    font-size:30px;
     font-weight:700;
     cursor:pointer;
     transition:.25s;
-    margin-bottom:16px;
+    margin-bottom:18px;
 }
 
 #uploadBtn:hover{
     transform:translateY(-2px);
-    box-shadow:0 6px 15px rgba(37,99,235,.25);
+    box-shadow:0 8px 20px rgba(37,99,235,.30);
 }
 
 #uploadBtn:active{
@@ -136,30 +138,30 @@ h1{
 
 #uploadStatus{
     text-align:center;
-    margin-bottom:14px;
-    font-size:13px;
+    margin-bottom:16px;
+    font-size:14px;
     color:#555;
 }
 
 /* ===========================================
-   CARDS
+   INFO CARDS
 =========================================== */
 
 .info-grid{
     display:grid;
-    gap:10px;
+    gap:12px;
 }
 
 .feature-card,
 .contact-card,
 .footer-card{
     background:#f8fafc;
-    border-left:4px solid #2563eb;
-    border-radius:12px;
-    padding:12px;
+    border-left:5px solid #2563eb;
+    border-radius:14px;
+    padding:16px;
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:14px;
     transition:.25s;
 }
 
@@ -167,13 +169,13 @@ h1{
 .contact-card:hover,
 .footer-card:hover{
     transform:translateY(-2px);
-    box-shadow:0 6px 15px rgba(0,0,0,.06);
+    box-shadow:0 6px 16px rgba(0,0,0,.08);
 }
 
 .feature-card span,
 .contact-card span,
 .footer-card span{
-    font-size:22px;
+    font-size:28px;
     flex-shrink:0;
 }
 
@@ -181,22 +183,22 @@ h1{
 .contact-card h3,
 .footer-card h3{
     color:#1e3a8a;
-    font-size:16px;
-    font-weight:600;
-    margin-bottom:2px;
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:3px;
 }
 
 .feature-card p,
 .contact-card p,
 .footer-card p{
     color:#64748b;
-    font-size:13px;
-    line-height:1.4;
+    font-size:14px;
+    line-height:1.5;
 }
 
 .contact-card a{
     color:#2563eb;
-    font-size:13px;
+    font-size:14px;
     font-weight:600;
     text-decoration:none;
     word-break:break-word;
@@ -211,25 +213,24 @@ h1{
 =========================================== */
 
 #result{
-    margin-top:18px;
+    margin-top:20px;
 }
 
 .success{
     background:#e8f5e9;
     border-left:5px solid #2e7d32;
-    border-radius:12px;
+    border-radius:14px;
     padding:18px;
 }
 
 .success h2{
     color:#2e7d32;
-    font-size:20px;
+    font-size:22px;
     margin-bottom:10px;
-    text-align:left;
 }
 
 .success p{
-    font-size:14px;
+    font-size:15px;
     margin:6px 0;
 }
 
@@ -239,86 +240,87 @@ h1{
 
 @media (max-width:768px){
 
-body{
-    padding:10px;
-    align-items:flex-start;
-}
+    body{
+        padding:12px;
+        align-items:flex-start;
+    }
 
-.container{
-    padding:18px;
-    border-radius:16px;
-}
+    .container{
+        max-width:100%;
+        padding:20px;
+        border-radius:20px;
+    }
 
-.logo{
-    font-size:30px;
-}
+    .logo{
+        font-size:42px;
+    }
 
-h1{
-    font-size:27px;
-}
+    h1{
+        font-size:30px;
+    }
 
-.subtitle{
-    font-size:13px;
-    margin-bottom:14px;
-}
+    .subtitle{
+        font-size:15px;
+        margin-bottom:18px;
+    }
 
-.upload-box{
-    padding:14px;
-    margin-bottom:12px;
-}
+    .upload-box{
+        padding:28px 18px;
+    }
 
-.upload-icon{
-    font-size:24px;
-}
+    .upload-icon{
+        font-size:36px;
+    }
 
-.upload-box h2{
-    font-size:18px;
-    margin-bottom:8px;
-}
+    .upload-box h2{
+        font-size:22px;
+        margin-bottom:16px;
+    }
 
-#fileInput::file-selector-button{
-    padding:8px 14px;
-    font-size:14px;
-}
+    #fileInput{
+        font-size:16px;
+    }
 
-#uploadBtn{
-    padding:11px;
-    font-size:15px;
-    margin-bottom:14px;
-}
+    #fileInput::file-selector-button{
+        padding:18px 28px;
+        font-size:19px;
+        border-radius:12px;
+    }
 
-.info-grid{
-    gap:8px;
-}
+    #uploadBtn{
+        height:78px;
+        font-size:32px;
+        border-radius:14px;
+    }
 
-.feature-card,
-.contact-card,
-.footer-card{
-    padding:11px;
-    gap:8px;
-}
+    .feature-card,
+    .contact-card,
+    .footer-card{
+        padding:14px;
+        gap:12px;
+    }
 
-.feature-card span,
-.contact-card span,
-.footer-card span{
-    font-size:19px;
-}
+    .feature-card span,
+    .contact-card span,
+    .footer-card span{
+        font-size:26px;
+    }
 
-.feature-card h3,
-.contact-card h3,
-.footer-card h3{
-    font-size:15px;
-}
+    .feature-card h3,
+    .contact-card h3,
+    .footer-card h3{
+        font-size:18px;
+    }
 
-.feature-card p,
-.contact-card p,
-.contact-card a,
-.footer-card p{
-    font-size:12px;
-}
+    .feature-card p,
+    .contact-card p,
+    .contact-card a,
+    .footer-card p{
+        font-size:14px;
+    }
 
-.success{
-    padding:16px;
-}
+    .success{
+        padding:18px;
+    }
 
 }
