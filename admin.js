@@ -327,7 +327,7 @@ function downloadFile(jobId,fileName){
     a.href=url;
 
 
-    a.target="_blank";
+    a.download = fileName;
 
 
     document.body.appendChild(a);
@@ -471,13 +471,6 @@ async function deleteOrder(jobId){
 
 
         if(data.success){
-
-
-            alert(
-                "Order deleted successfully"
-            );
-
-
             loadFiles();
 
 
