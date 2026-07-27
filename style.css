@@ -257,3 +257,110 @@ h2{
         font-size:14px;
     }
 }
+/* ===========================================
+   MOBILE FULL SCREEN OPTIMIZATION
+=========================================== */
+
+@media (max-width:768px){
+
+    body{
+        padding:8px;
+        align-items:flex-start;
+    }
+
+    .container{
+        max-width:100%;
+        padding:16px;
+        border-radius:16px;
+    }
+
+    .logo{
+        font-size:34px;
+        margin-bottom:2px;
+    }
+
+    h1{
+        font-size:26px;
+        margin-bottom:2px;
+    }
+
+    .subtitle{
+        font-size:13px;
+        margin-bottom:14px;
+    }
+
+    .upload-box{
+        padding:16px;
+        margin-bottom:14px;
+    }
+
+    .upload-top-icon{
+        width:56px;
+        height:56px;
+        font-size:28px;
+        margin-bottom:12px;
+    }
+
+    .upload-box h2{
+        font-size:18px;
+        margin-bottom:4px;
+    }
+
+    .file-types{
+        font-size:12px;
+        margin-bottom:12px;
+    }
+
+    .upload-area{
+        padding:18px 10px;
+    }
+
+    .folder-icon{
+        font-size:34px;
+        margin-bottom:8px;
+    }
+
+    .upload-area h3{
+        font-size:20px;
+        margin-bottom:4px;
+    }
+
+    .upload-area p{
+        font-size:13px;
+    }
+
+    #uploadBtn{
+        padding:12px;
+        font-size:16px;
+        margin-bottom:14px;
+    }
+
+    .info-grid{
+        gap:8px;
+    }
+
+    .feature-card,
+    .contact-card,
+    .footer-card{
+        padding:10px;
+    }
+
+    .feature-card span,
+    .contact-card span,
+    .footer-card span{
+        font-size:18px;
+    }
+
+    .feature-card h3,
+    .contact-card h3,
+    .footer-card h3{
+        font-size:14px;
+    }
+
+    .feature-card p,
+    .contact-card p,
+    .footer-card p,
+    .contact-card a{
+        font-size:12px;
+    }
+}
