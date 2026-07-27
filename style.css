@@ -186,8 +186,11 @@ h2{
     gap: 12px;
 }
 
-.feature-card span, .contact-card span, .footer-card span{
-    font-size: 22px;
+.feature-card span,
+.footer-card span{
+    font-size:22px;
+    min-width:28px;
+    text-align:center;
 }
 
 .feature-card h3, .contact-card h3, .footer-card h3{
@@ -345,4 +348,16 @@ h2{
     .contact-card a{
         font-size:12px;
     }
+}
+.phone-link{
+    display:block;
+    margin-top:6px;
+    color:#2563eb;
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.phone-link:hover{
+    text-decoration:underline;
 }
